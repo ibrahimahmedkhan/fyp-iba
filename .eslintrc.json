@@ -4,13 +4,13 @@
   "extends": [
     "plugin:react/recommended",
     "plugin:@next/next/recommended",
+    "airbnb",
     "airbnb-typescript",
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:import/typescript"
   ],
   "rules": {
-    "import/no-extraneous-dependencies": "off",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [
@@ -28,11 +28,6 @@
         "tsx": "never"
       }
    ]
-  },
-  "settings": {
-    "import/resolver": {
-      "typescript": {}
-    }
   },
   "parserOptions": {
     "project": "./tsconfig.json"
