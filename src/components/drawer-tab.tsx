@@ -2,12 +2,13 @@
 import { Button, Typography } from '@mui/material';
 import React from 'react';
 
-export default function DrawerTab({ icon, text } : {icon: any, text: string }) {
+
+
+export default function DrawerTab({ icon, text } : { icon: any, text: string }) {
   return (
     <Button
       sx={{
         color: 'black',
-        // backgroundColor: 'primary.main',
         '&:hover': {
           backgroundColor: 'grey',
         },

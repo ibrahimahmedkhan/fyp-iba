@@ -17,7 +17,7 @@ export default function RootLayaout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div>asdas</div>
+        {/* <div>asdas</div> */}
         {children}
       </body>
     </html>

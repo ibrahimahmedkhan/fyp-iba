@@ -1,29 +1,24 @@
 import React from 'react';
-import { Box, Grid } from '@mui/material';
+import {
+  Box, Card, CardContent, Typography,
+} from '@mui/material';
 import MyDrawer from '@/components/my-drawer';
+import MyTable from '@/components/my-table';
+import MyAppBar from '@/components/my-app-bar';
 
-function VideoPlayer() {
-  const videoUrl = 'https://ia600300.us.archive.org/17/items/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4';
-
+export default function DashboardScreen() {
   return (
-    <video controls width="60%">
-      <track kind="captions" />
-      <source src={videoUrl} type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
-  );
-}
-
-function DashboardScreen() {
-  return (
-    <Box color="black">
+    <Box style={{ backgroundColor: '#EFEFEF', height: '100vh' }} color="black">
+      <MyAppBar />
       <MyDrawer />
-      {/* <MyTable /> */}
-      <Grid container justifyContent="center">
-        <VideoPlayer />
-      </Grid>
+      <Card style={{
+        width: '50vw', marginLeft: '30em', marginTop: '3em', borderRadius: '1em',
+      }}
+      >
+        {/* <CardContent style={{ paddingLeft: '0' }}> */}
+        <MyTable />
+        {/* </CardContent> */}
+      </Card>
     </Box>
   );
 }
-
-export default DashboardScreen;

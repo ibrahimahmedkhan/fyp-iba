@@ -1,7 +1,6 @@
-import { Table } from '@mui/material';
+import { Box, Table } from '@mui/material';
 import React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import { Box } from '@mui/system';
 import { Delete, Edit } from '@mui/icons-material';
 
 export default function MyTable() {
@@ -17,6 +16,31 @@ export default function MyTable() {
     },
   ];
 
+  const cols = [
+    {
+      field: 'ID', headerName: 'ID',
+    },
+    {
+      field: 'Username', headerName: 'Username',
+    },
+    {
+      field: 'Security Access', headerName: 'Security Access',
+    },
+    {
+      field: '',
+      headerName: 'Actions',
+      sortable: false,
+      // flexBasis: 100, // set flexBasis to a fixed value so it doesn't shrink
+
+      disableClickEventBubbling: true,
+      renderCell: (params : any) => (
+        <>
+          <Edit />
+          <Delete />
+        </>
+      ),
+    },
+  ];
   const columns = [
     {
       field: 'ID', headerName: 'ID', width: 150, flexGrow: 1,
@@ -45,11 +69,11 @@ export default function MyTable() {
     },
   ];
   return (
-    <Box sx={{ marginX: '25%', height: '30em' }}>
+    <Box sx={{ marginX: '5em', height: '30em' }}>
       <h1>
         Admin
       </h1>
-      <DataGrid rows={rows} columns={columns} />
+      <DataGrid rows={rows} columns={cols} />
     </Box>
   );
 }
