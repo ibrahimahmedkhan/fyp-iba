@@ -6,7 +6,6 @@ import {
 import Image from 'next/image';
 
 export default function LoginScreen() {
-  console.log('working');
   return (
     <Box sx={{
       textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', paddingRight: '0',
