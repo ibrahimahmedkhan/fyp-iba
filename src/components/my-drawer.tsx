@@ -20,7 +20,7 @@ export default function MyDrawer() {
       textAlign: 'center',
     }}
     >
-      <Image src="/trafficLight.png" alt="Traffic light" width={60} height={60} />
+      <Image style={{ height: '12vh', width: '10vh' }} src="/lighti_image.png" alt="Traffic light" width={60} height={60} />
       <Link href="/statistics">
         <DrawerTab icon={<PieChart />} text="Statistics" />
       </Link>

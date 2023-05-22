@@ -38,11 +38,14 @@ function DescriptionCard({ icon, title, value }: { icon: any, title: string, val
 
 function DashboardScreen() {
   return (
-    <>
+    <Box style={{ backgroundColor: 'darkgrey', height: '100vh' }}>
       <MyAppBar />
       <MyDrawer />
-      <Grid style={{ marginTop: '2em' }} container justifyContent="center">
-        <Card style={{ width: '50%', height: '100vh', padding: '2em' }}>
+      <Grid style={{ marginTop: '2em', paddingLeft: '20%', height: '80%' }} container justifyContent="center">
+        <Card style={{
+          width: '70%', height: '100%', padding: '1em 1.4em',
+        }}
+        >
           <CardActionArea>
             <CardContent>
               <Typography variant="h5">
@@ -68,7 +71,7 @@ function DashboardScreen() {
           </CardActionArea>
         </Card>
       </Grid>
-    </>
+    </Box>
   );
 }
 

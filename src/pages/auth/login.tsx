@@ -1,68 +1,107 @@
-import { Facebook, Google } from '@mui/icons-material';
+// import { Facebook, Google, LineAxisOutlined } from '@mui/icons-material';
 import {
   Box,
-  Button, Card, CardContent, Grid, IconButton, Stack, TextField, Typography,
+  Button, Card, CardContent, Grid, IconButton, Stack, Typography,
 } from '@mui/material';
+import axios from 'axios';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { Formik, useFormik } from 'formik';
+import { Router, useRouter } from 'next/router';
+import { loginApi } from '@/api/login';
+import { MyTextField } from '@/components/my-text-field';
+import { isEmailValid, isPasswordValid } from '@/lib/validation';
 
 export default function LoginScreen() {
+  const router = useRouter();
+  const [err, setErr] = useState('');
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    onSubmit: async (values) => {
+      const result = await loginApi(values.email, values.password);
+      if (result.status === 200) {
+        router.push('/admin');
+      } else {
+        setErr('Invalid Credentials');
+      }
+      console.log(result);
+    },
+    validate: (values) => {
+      const errors: any = {};
+      if (!values.email) {
+        errors.email = 'Required';
+      } else if (isEmailValid(values.email)) {
+        errors.email = 'Invalid email address';
+      }
+
+      if (!values.password) {
+        errors.password = 'Required';
+      } else if (err === 'Invalid Credentials') {
+        errors.password = 'Invalid Credentials';
+      }
+
+      return errors;
+    },
+
+  });
+
+  // useEffect(() => {
+  //   // const func = async () => {
+  //   //   const result = login('ibrahimahmed.ayesha@gmail.com', '123456');
+  //   //   console.log(result);
+  //   // };
+  //   // func();
+  // }, []);
+
   return (
     <Box sx={{
       textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', paddingRight: '0',
     }}
     >
       <Grid container>
-        <Image style={{ alignSelf: 'start' }} src="/Screenshot 2023-05-08 at 3.48.06 AM.png" alt="me" height={700} width={550} />
-        <Card style={{ width: '30%', justifyContent: 'center', marginTop: '10%' }}>
-          <CardContent>
-            <Typography textAlign="left">
-              Welcome Back
+        <Grid item xs>
+          <Image style={{ alignSelf: 'start', width: '65vw', height: '100vh' }} src="/traffic_image_hd.jpeg" alt="me" width="1000" height="800" />
+        </Grid>
+        <Grid item container xs alignContent="center" justifyContent="center">
+          <Stack width="75%" direction="column" spacing={4}>
+            <Typography textAlign="left" fontSize={20}>
+              Welcome Back 👋
             </Typography>
-            <Typography textAlign="left" variant="h5">Login to your account</Typography>
-            <TextField
+            <Typography textAlign="center" variant="h4">Login</Typography>
+            <MyTextField
+              formik={formik}
+              name="email"
               label="Email"
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              placeholder="Please enter your email"
+              placeholder="Enter Email"
             />
-            <TextField
+            <MyTextField
+              formik={formik}
+              name="password"
               label="Password"
-              variant="outlined"
-              margin="normal"
-              fullWidth
               placeholder="Enter Password"
             />
-
-            <Button sx={{ backgroundColor: 'grey' }} variant="contained" fullWidth>
+            <Button
+              style={{
+                borderRadius: '5em',
+                width: '80%',
+                backgroundColor: 'orange',
+                color: 'white',
+                alignSelf: 'center',
+              }}
+              sx={{ backgroundColor: 'grey' }}
+              variant="contained"
+              fullWidth
+              onClick={formik.handleSubmit}
+            >
               Login
             </Button>
             <br />
             <br />
-            <Typography variant="caption" color="textSecondary" component="p" textAlign="left">
-              Forgot Password?
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              Dont have an account?
-              <Button variant="text" color="primary">
-                Create Account
-              </Button>
-            </Typography>
-
-            <hr />
-            <Typography variant="body2" color="textSecondary" component="p" textAlign="left">
-              Or Login with
-            </Typography>
-            <Stack direction="row">
-              <IconButton>
-                <Facebook />
-              </IconButton>
-              <IconButton>
-                <Google />
-              </IconButton>
-            </Stack>
-          </CardContent>
-        </Card>
+          </Stack>
+        </Grid>
 
       </Grid>
 

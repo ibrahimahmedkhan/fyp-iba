@@ -1,42 +1,3 @@
-// import AppBar from '@mui/material/AppBar';
-// import Toolbar from '@mui/material/Toolbar';
-// import Typography from '@mui/material/Typography';
-// import Button from '@mui/material/Button';
-// import IconButton from '@mui/material/IconButton';
-// import MenuIcon from '@mui/icons-material/Menu';
-
-// import React from 'react';
-
-// export default function MyAppBar() {
-//   return (
-//     <AppBar position="static">
-//       <Toolbar>
-//         <IconButton
-//           size="large"
-//           edge="start"
-//           color="inherit"
-//           aria-label="menu"
-//           sx={{
-//             mr: 2,
-//           }}
-//         >
-//           <MenuIcon />
-//         </IconButton>
-//         <Typography
-//           variant="h6"
-//           component="div"
-//           sx={{
-//             flexGrow: 1,
-//           }}
-//         >
-//           News
-//         </Typography>
-//         <Button color="inherit">Login</Button>
-//       </Toolbar>
-//     </AppBar>
-//   );
-// }
-
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -51,9 +12,13 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
+// import MailIcon from '@ui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import { Raleway } from 'next/font/google';
+import { Mail } from '@mui/icons-material';
+
+const raleway = Raleway({ subsets: ['latin'] });
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -161,7 +126,7 @@ export default function PrimarySearchAppBar() {
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
-            <MailIcon />
+            <Mail />
           </Badge>
         </IconButton>
         <p>Messages</p>
@@ -195,9 +160,9 @@ export default function PrimarySearchAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style={{ paddingLeft: '17em', backgroundColor: 'lightgray' }} color="transparent" elevation={0}>
-        <Toolbar>
-          <Typography variant="h4" fontWeight={400} color="black">
+      <AppBar position="static" style={{ paddingLeft: '17em', backgroundColor: 'lightslategrey' }} elevation={0}>
+        <Toolbar style={{ height: '4.6em' }}>
+          <Typography paddingX="4.4em" className={raleway.className} variant="h3" fontWeight={400} color="black">
             Dashboard
           </Typography>
           <Search>
@@ -213,7 +178,7 @@ export default function PrimarySearchAppBar() {
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="error">
-                <MailIcon />
+                <Mail />
               </Badge>
             </IconButton>
             <IconButton
