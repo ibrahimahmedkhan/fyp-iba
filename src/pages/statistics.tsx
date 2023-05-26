@@ -10,21 +10,7 @@ import {
 import MyDrawer from '@/components/my-drawer';
 import MyAppBar from '@/components/my-app-bar';
 import { db } from '../firebase';
-
-function VideoPlayer() {
-  const videoUrl = 'https://ia600300.us.archive.org/17/items/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4';
-
-  return (
-    <img width="100%" src="https://fypyolo.ahris.ninja/streams/intersection_1_signal_1" alt="Live Feed" />
-    // <img width="100%" src="https://fypyolo.ahris.ninja/streams/intersection_1_signal_2" alt="Live Feed" />
-
-  // <video controls width="100%">
-  //   <track kind="captions" />
-  //   <source src={videoUrl} type="video/mp4" />
-  //   Your browser does not support the video tag.
-  // </video>
-  );
-}
+import StatisticsCard from '@/components/statistics-card';
 
 function DescriptionCard({ icon, title, value }: { icon: any, title: string, value: string }) {
   return (
@@ -44,7 +30,7 @@ function DescriptionCard({ icon, title, value }: { icon: any, title: string, val
   );
 }
 
-function DashboardScreen() {
+function StatisticsScreen() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -68,26 +54,8 @@ function DashboardScreen() {
         }}
         >
           <CardActionArea>
-            <CardContent>
-              <Typography variant="h5">
-                Live Feed
-              </Typography>
-              <Box>
-                <VideoPlayer />
-              </Box>
-            </CardContent>
-            <Grid container justifyContent="center">
-              <DescriptionCard
-                icon={<Traffic />}
-                title="Time left till end of signal"
-                value={Math.round(data?.curr_green_duration_left * 100) / 100}
-              />
-              <Divider orientation="vertical" flexItem />
-              <DescriptionCard
-                icon={<DirectionsCar />}
-                title="Total Vehicles"
-                value={data?.signals?.signal_1?.non_emergency}
-              />
+            <Grid container justifyContent="space-evenly">
+              <StatisticsCard data={data} />
             </Grid>
           </CardActionArea>
         </Card>
@@ -96,4 +64,4 @@ function DashboardScreen() {
   );
 }
 
-export default DashboardScreen;
+export default StatisticsScreen;

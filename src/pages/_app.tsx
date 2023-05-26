@@ -1,6 +1,6 @@
 // import '../styles/global.css';
 
-import { Inter } from 'next/font/google';
+import { Inter, Poppins } from 'next/font/google';
 
 // If loading a variable font, you don't need to specify the font weight
 const inter = Inter({ subsets: ['latin'] });
@@ -12,7 +12,7 @@ export default function MyApp(
       <style jsx global>
         {`
         html {
-          font-family: ${inter.style.fontFamily};
+          font-family: 'Poppins', sans-serif;;
         }
         body {
           margin: 0;

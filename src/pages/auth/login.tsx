@@ -3,6 +3,7 @@ import {
   Box,
   Button, Card, CardContent, Grid, IconButton, Stack, Typography,
 } from '@mui/material';
+import { redirect } from 'next/navigation';
 import axios from 'axios';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
@@ -23,7 +24,8 @@ export default function LoginScreen() {
     onSubmit: async (values) => {
       const result = await loginApi(values.email, values.password);
       if (result.status === 200) {
-        router.push('/admin');
+        console.log('🚀 ~ file: login.tsx:26 ~ onSubmit: ~ result:', result);
+        redirect('/admin');
       } else {
         setErr('Invalid Credentials');
       }
@@ -95,6 +97,8 @@ export default function LoginScreen() {
               variant="contained"
               fullWidth
               onClick={formik.handleSubmit}
+              // // onSubmit={formik.handleSubmit}
+              // onClickCapture={formik.handleSubmit}
             >
               Login
             </Button>

@@ -2,5 +2,9 @@ import axios from 'axios';
 import { backendUrl } from '@/constants/app-constants';
 
 export async function getAllUsers() {
-  return axios.get(`${backendUrl}/user/getallusers`);
+  try {
+    return await axios.get(`${backendUrl}/user/`);
+  } catch (err) {
+    console.log(err);
+  }
 }

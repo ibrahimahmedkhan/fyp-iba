@@ -1,23 +1,26 @@
 import React from 'react';
 import {
-  Card, Icon, CardContent, Typography,
+  Card, CardContent, Typography,
   CardActionArea,
 } from '@mui/material';
-import { AddCircleOutlined } from '@mui/icons-material';
 
-export default function StatisticsSubCard() {
+export default function StatisticsSubCard({
+  color, text, value, icon,
+}:
+{ color: string, text:string, value: number, icon: any }) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{
+      width: '20%', backgroundColor: color, marginX: '2em', padding: '1em',
+    }}
+    >
       <CardActionArea>
-        <Icon>
-          <AddCircleOutlined />
-        </Icon>
+        {icon}
         <CardContent>
           <Typography variant="h5">
-            86.74
+            {value}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Model Average Accuracy
+            {text}
           </Typography>
         </CardContent>
       </CardActionArea>

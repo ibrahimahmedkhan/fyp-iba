@@ -24,9 +24,9 @@ export default function MyDrawer() {
       <Link href="/statistics">
         <DrawerTab icon={<PieChart />} text="Statistics" />
       </Link>
-      <Link href="/intersection">
+      {/* <Link href="/intersection">
         <DrawerTab icon={<BarChart />} text="Intersection" />
-      </Link>
+      </Link> */}
       <Link href="/livefeed">
         <DrawerTab icon={<SsidChart />} text="LiveFeed" />
       </Link>
